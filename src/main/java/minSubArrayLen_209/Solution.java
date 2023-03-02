@@ -11,8 +11,7 @@ public class Solution {
             while (sum >= target) {
                 isChanged = true;
                 res = Math.min(res, high - low);
-                sum -= nums[low];
-                low++;
+                sum -= nums[low++];
             }
         }
         return isChanged ? res : 0;
