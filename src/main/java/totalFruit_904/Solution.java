@@ -39,8 +39,8 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        int[] fruits = {1, 1, 4, 0, 4};
-        int res = totalFruit(fruits);
+        int[] fruits = {1, 1, 3, 3, 3, 4, 4, 4, 4, 0, 4};
+        int res = Solution2.totalFruit(fruits);
         System.out.println(res);
     }
 }
@@ -60,5 +60,31 @@ class Solution1 {
             res = Math.max(res, i - left);
         }
         return res;
+    }
+}
+
+class Solution2 {
+    // 简单，高效
+    public static int totalFruit(int[] fruits) {
+        int typeA = fruits[0];
+        int typeB = -1;
+        int left = 0;
+        int right = 0;
+        int result = 0;
+        for (int i = 0; i < fruits.length; i++) {
+            int cur = fruits[i];
+            if (cur != typeA) {
+                if (cur != typeB && typeB != -1) {
+                    result = Math.max(result, i - left);
+                    left = right;
+                }
+                // 每次保证 typeA 是当前最新的类型
+                typeB = typeA;
+                typeA = cur;
+                // 每次 curType 和 当前的 type 不一样时，需要更新最又的指针
+                right = i;
+            }
+        }
+        return Math.max(result, fruits.length - left);
     }
 }
