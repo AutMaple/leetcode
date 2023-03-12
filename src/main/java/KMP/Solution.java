@@ -46,5 +46,6 @@ public class Solution {
     public static void main(String[] args) {
         int index = search("acabacac", "abac");
         System.out.println(index);
+        System.currentTimeMillis();
     }
 }
